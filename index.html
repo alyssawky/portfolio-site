@@ -92,6 +92,8 @@ body[data-lang="zh"] #quotes:is([data-film="immature-co-evolution"],[data-film="
 body[data-lang="en"] #quotes .q:first-child p{font-size:clamp(18px,1.55vw,23px);line-height:1.18}
 body[data-lang="en"] #quotes .q:first-child{position:relative;left:clamp(180px,16vw,410px)}
 body[data-lang="en"] #quotes .q:last-child{position:relative;left:clamp(170px,14vw,360px)}
+/* Align short first captions with the second caption instead of the top of its two-line row. */
+body[data-lang="en"] #quotes:is([data-film="human-factory"],[data-film="immature-co-evolution"]) .q:first-child{align-self:end;top:clamp(14px,1.5vw,24px)}
 
 /* ---------- sections ---------- */
 section.block{border-top:1px solid var(--rule);padding-block:56px 72px}
