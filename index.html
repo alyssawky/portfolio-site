@@ -85,9 +85,9 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 .q p{margin:0;font-family:var(--serif);font-size:clamp(20px,2vw,30px);line-height:1.04;text-transform:uppercase;text-wrap:balance}
 body[data-lang="zh"] .q p{font-family:var(--zh-serif);font-size:clamp(17px,1.5vw,22px);line-height:1.4;text-transform:none}
 /* Keep the first film’s theme clear of its sinking disc. */
-#quotes[data-film="human-factory"] .q:first-child{transform:translateX(clamp(120px,11vw,190px))}
-#quotes[data-film="human-factory"] .q:last-child{transform:translateX(clamp(32px,3vw,52px))}
-body[data-lang="en"] #quotes[data-film="human-factory"] .q:last-child{transform:translateX(clamp(85px,7vw,120px))}
+#quotes[data-film="human-factory"] .q:first-child{position:relative;left:clamp(120px,11vw,190px)}
+#quotes[data-film="human-factory"] .q:last-child{position:relative;left:clamp(32px,3vw,52px)}
+body[data-lang="en"] #quotes[data-film="human-factory"] .q:last-child{position:relative;left:clamp(85px,7vw,120px)}
 
 /* ---------- sections ---------- */
 section.block{border-top:1px solid var(--rule);padding-block:56px 72px}
