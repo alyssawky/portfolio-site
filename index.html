@@ -84,19 +84,17 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 .q .label{display:block;margin-bottom:8px}
 .q p{margin:0;font-family:var(--serif);font-size:clamp(20px,2vw,30px);line-height:1.04;text-transform:uppercase;text-wrap:balance}
 body[data-lang="zh"] .q p{font-family:var(--zh-serif);font-size:clamp(17px,1.5vw,22px);line-height:1.4;text-transform:none}
-/* Keep the first film’s theme clear of its sinking disc. */
+/* Give each first caption its own clear position, with shorter English lines. */
+#quotes{z-index:22}
 #quotes[data-film="human-factory"] .q:first-child{position:relative;left:clamp(120px,11vw,190px)}
 #quotes[data-film="human-factory"] .q:last-child{position:relative;left:clamp(32px,3vw,52px)}
-body[data-lang="en"] #quotes[data-film="human-factory"] .q:last-child{position:relative;left:clamp(85px,7vw,120px)}
 body[data-lang="zh"] #quotes:is([data-film="immature-co-evolution"],[data-film="final-deadline"]) .q:first-child{position:relative;left:clamp(80px,7vw,130px)}
-body[data-lang="en"] #quotes:is([data-film="immature-co-evolution"],[data-film="final-deadline"]) .q:first-child{position:relative;left:clamp(80px,7vw,130px)}
-body[data-lang="en"] #quotes .q:last-child{position:relative;left:clamp(50px,5vw,90px)}
-/* Keep disc proportions within the available height on wide, short screens. */
-@media (min-width:981px) and (min-aspect-ratio:3/2){.slot{width:min(var(--w),calc((100vh - 92px)*.48))}}
-/* Keep captions legible if a disc still reaches the caption line. */
-#quotes{z-index:22}
-#quotes .q .label{width:max-content;margin-inline:auto;background:var(--paper);padding-inline:.18em}
-#quotes .q p{display:inline;background:var(--paper);box-decoration-break:clone;-webkit-box-decoration-break:clone;padding-inline:.14em}
+body[data-lang="en"] #quotes .q:first-child p{font-size:clamp(18px,1.55vw,23px);line-height:1.18}
+body[data-lang="en"] #quotes[data-film="human-factory"] .q:first-child{position:relative;left:clamp(180px,16vw,410px)}
+body[data-lang="en"] #quotes[data-film="human-factory"] .q:last-child{position:relative;left:clamp(170px,14vw,360px)}
+body[data-lang="en"] #quotes[data-film="immature-co-evolution"] .q:first-child{position:relative;left:calc(-1 * clamp(140px,17vw,430px))}
+body[data-lang="en"] #quotes[data-film="final-deadline"] .q:first-child{position:relative;left:calc(-1 * clamp(40px,5vw,120px))}
+body[data-lang="en"] #quotes:is([data-film="immature-co-evolution"],[data-film="final-deadline"]) .q:last-child{position:relative;left:clamp(50px,5vw,90px)}
 
 /* ---------- sections ---------- */
 section.block{border-top:1px solid var(--rule);padding-block:56px 72px}
