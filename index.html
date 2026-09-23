@@ -85,7 +85,10 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 .q p{margin:0;font-family:var(--serif);font-size:clamp(20px,2vw,30px);line-height:1.04;text-transform:uppercase;text-wrap:balance}
 body[data-lang="zh"] .q p{font-family:var(--zh-serif);font-size:clamp(17px,1.5vw,22px);line-height:1.4;text-transform:none}
 /* Give each first caption its own clear position, with shorter English lines. */
-#quotes{z-index:22}
+#quotes{z-index:22;visibility:hidden}
+#quotes.is-visible{visibility:visible}
+#quotes .q{opacity:0;transform:translateY(-26px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+#quotes.is-visible .q{opacity:1;transform:translateY(0)}
 #quotes[data-film="human-factory"] .q:first-child{position:relative;left:clamp(120px,11vw,190px)}
 #quotes[data-film="human-factory"] .q:last-child{position:relative;left:clamp(32px,3vw,52px)}
 body[data-lang="zh"] #quotes:is([data-film="immature-co-evolution"],[data-film="final-deadline"]) .q:first-child{position:relative;left:clamp(80px,7vw,130px)}
@@ -420,8 +423,12 @@ body[data-lang="zh"] .sp-h{font-size:clamp(18px,1.4vw,21px)!important}
 @media (max-width:640px){ .d-row{grid-template-columns:1fr} }
 
 /* product page tweaks */
-.rig-far{left:3.5vw!important;top:auto!important;bottom:6%!important;width:min(20vw,300px)!important}
+.rig-far{left:4.5vw!important;top:auto!important;bottom:6%!important;width:min(23vw,320px)!important}
 .rig-far .rig-hint{margin-top:12px!important}
+@media (max-width:980px){
+  .rig-far{position:relative!important;left:auto!important;top:auto!important;bottom:auto!important;width:min(80vw,420px)!important;margin:20px auto 0}
+  .rig-far .rig-hint{position:relative;top:auto;white-space:normal;margin-top:12px!important;text-align:center}
+}
 .prod .golink.live-link{position:absolute;right:0;bottom:4px;z-index:9;font-size:14px;padding:12px 20px}
 @media (max-width:980px){ .prod .golink.live-link{position:relative;align-self:flex-end;order:9;margin-top:18px} }
 
@@ -1138,9 +1145,18 @@ function renderCredits(){
   }).join('');
   $('#credits').innerHTML=`<div class="fade"><h1>${f.title.en}<small>${T(f.sub)}</small></h1>${rows}</div>`;
   $('#quotes').dataset.film=f.id;
-  $('#quotes').innerHTML=f.quotes.map(([k,q])=>`<div class="q fade"><span class="label">${T(k)}</span><p>${T(q)}</p></div>`).join('');
+  $('#quotes').innerHTML=f.quotes.map(([k,q])=>`<div class="q"><span class="label">${T(k)}</span><p>${T(q)}</p></div>`).join('');
 }
-function setActive(i){ if(i===active) return; active=i; renderCredits(); }
+function setActive(i){
+  const quotes=$('#quotes');
+  if(i!==active){
+    quotes.classList.remove('is-visible');
+    active=i;
+    renderCredits();
+    void quotes.offsetHeight;
+  }
+  quotes.classList.add('is-visible');
+}
 
 /* ---------- detail ---------- */
 function renderDetail(i){
@@ -1400,7 +1416,9 @@ function setLang(l){
 
 /* ---------- events ---------- */
 $('#slots').addEventListener('mouseover',e=>{const s=e.target.closest('.slot'); if(s) setActive(+s.dataset.i);});
+$('#slots').addEventListener('mouseout',e=>{const s=e.target.closest('.slot'); if(s&&!s.contains(e.relatedTarget)) $('#quotes').classList.remove('is-visible');});
 $('#slots').addEventListener('focusin',e=>{const s=e.target.closest('.slot'); if(s) setActive(+s.dataset.i);});
+$('#slots').addEventListener('focusout',e=>{const s=e.target.closest('.slot'); if(s&&!s.contains(e.relatedTarget)) $('#quotes').classList.remove('is-visible');});
 $('#slots').addEventListener('click',e=>{const s=e.target.closest('.slot'); if(s) openDetail(+s.dataset.i,{x:e.clientX||innerWidth/2,y:e.clientY||innerHeight/2});});
 $('#closeBtn').addEventListener('click',closeDetail);
 $('#dBody').addEventListener('click',e=>{const b=e.target.closest('[data-go]'); if(b){ const v=$('#vid'); if(v) v.pause(); current=+b.dataset.go; renderDetail(current); $('#detail').scrollTo({top:0,behavior:'smooth'}); }});
