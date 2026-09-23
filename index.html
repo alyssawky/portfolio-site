@@ -209,7 +209,8 @@ body[data-lang="zh"] .tab{font-family:var(--zh-serif);font-size:15px;padding:9px
 .c-prompt{margin-top:auto;font-size:13px;font-weight:600}
 .c-prompt .cur{animation:blink 1s steps(1) infinite}
 @keyframes blink{50%{opacity:0}}
-.rig-hint{text-align:center;margin:6px 0 0;font-size:13px;color:var(--muted);letter-spacing:.04em}
+.rig-hint{text-align:center;margin:10px 0 0;font-size:clamp(14px,1.1vw,16px);font-weight:500;color:var(--ink);letter-spacing:.02em}
+.rig-hint::before{content:'↑';display:inline-block;margin-right:8px;font-size:1.2em;line-height:0;vertical-align:-.05em}
 .rig-hint b{color:var(--ink);font-weight:600}
 
 /* app demo keeps the product's own green palette */
@@ -351,7 +352,7 @@ body[data-lang="zh"] .sp-h{font-family:var(--zh-serif);font-weight:600;text-tran
 .box-hit:focus-visible{outline:3px dashed var(--ink);outline-offset:6px}
 .rig.busy .box-hit{cursor:progress}
 .rig-loop{z-index:24}
-.rig-loop path{stroke-width:6}
+.rig-loop path{stroke-width:11}
 .rig.hover .fdisk2.front{transform:var(--t) translateY(18px)}
 .more{max-width:none}
 body.paged .more section.block{padding-block:28px 34px}
@@ -1221,17 +1222,17 @@ function drawBeam(){
   const g=$('#beamGrad'); g.setAttribute('x1',sx); g.setAttribute('y1',sy); g.setAttribute('x2',x1); g.setAttribute('y2',(t+bt)/2);
 }
 const LOOPS=[
-  {turns:1.12,a0:-2.5,wob:.045,f:3,tilt:0,shrink:.05},
-  {turns:2.08,a0:-2.2,wob:.03,f:4,tilt:3,shrink:.08},
-  {turns:1.2,a0:-1.4,wob:.028,f:11,tilt:-4,shrink:.04},
-  {turns:1.1,a0:-3.0,wob:.06,f:2,tilt:-7,shrink:.03,tail:true},
-  {turns:1.35,a0:-0.6,wob:.05,f:5,tilt:5,shrink:.1}
+  {turns:1.18,a0:-2.5,wob:.075,f:3,tilt:-5,shrink:.045},
+  {turns:1.2,a0:-2.2,wob:.085,f:3,tilt:4,shrink:.055},
+  {turns:1.16,a0:-1.4,wob:.07,f:4,tilt:-7,shrink:.04},
+  {turns:1.14,a0:-3.0,wob:.09,f:2,tilt:-6,shrink:.035,tail:true},
+  {turns:1.22,a0:-0.6,wob:.08,f:3,tilt:6,shrink:.06}
 ];
 function rigLoopPath(v){
-  const L=LOOPS[v], s0=RIG.slots[0], cx=s0.x+222, cy=s0.y+215, rx=300, ry=300, tl=L.tilt*Math.PI/180, pts=[];
-  for(let t=0;t<=Math.PI*2*L.turns;t+=.06){
-    const k=1+L.wob*Math.sin(L.f*t+v)+.02*Math.sin(7*t+v*2)-L.shrink*(t/(Math.PI*2));
-    const x=rx*k*Math.cos(t+L.a0), y=ry*k*Math.sin(t+L.a0);
+  const L=LOOPS[v], s0=RIG.slots[0], cx=s0.x+192, cy=s0.y+180, rx=380, ry=325, tl=L.tilt*Math.PI/180, pts=[];
+  for(let t=0;t<=Math.PI*2*L.turns;t+=.045){
+    const k=1+L.wob*Math.sin(L.f*t+v*.9)+.045*Math.sin(5*t+v*1.7)+.017*Math.sin(9*t+v*2)-L.shrink*(t/(Math.PI*2));
+    const x=rx*k*Math.cos(t+L.a0)+12*Math.sin(4*t+v), y=ry*k*Math.sin(t+L.a0)+11*Math.cos(3*t+v);
     pts.push([cx+x*Math.cos(tl)-y*Math.sin(tl), cy+x*Math.sin(tl)+y*Math.cos(tl)]);
   }
   if(L.tail){const e=pts[pts.length-1]; pts.push([e[0]-60,e[1]+30],[e[0]-140,e[1]+40]);}
