@@ -84,6 +84,10 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 .q .label{display:block;margin-bottom:8px}
 .q p{margin:0;font-family:var(--serif);font-size:clamp(20px,2vw,30px);line-height:1.04;text-transform:uppercase;text-wrap:balance}
 body[data-lang="zh"] .q p{font-family:var(--zh-serif);font-size:clamp(17px,1.5vw,22px);line-height:1.4;text-transform:none}
+/* Keep the first film’s theme clear of its sinking disc. */
+#quotes[data-film="human-factory"] .q:first-child{transform:translateX(clamp(120px,11vw,190px))}
+#quotes[data-film="human-factory"] .q:last-child{transform:translateX(clamp(32px,3vw,52px))}
+body[data-lang="en"] #quotes[data-film="human-factory"] .q:last-child{transform:translateX(clamp(85px,7vw,120px))}
 
 /* ---------- sections ---------- */
 section.block{border-top:1px solid var(--rule);padding-block:56px 72px}
@@ -1126,6 +1130,7 @@ function renderCredits(){
     return `<div class="crow"><span class="label">${T(k)}</span><span class="v">${parts.join('<br>')}</span></div>`;
   }).join('');
   $('#credits').innerHTML=`<div class="fade"><h1>${f.title.en}<small>${T(f.sub)}</small></h1>${rows}</div>`;
+  $('#quotes').dataset.film=f.id;
   $('#quotes').innerHTML=f.quotes.map(([k,q])=>`<div class="q fade"><span class="label">${T(k)}</span><p>${T(q)}</p></div>`).join('');
 }
 function setActive(i){ if(i===active) return; active=i; renderCredits(); }
