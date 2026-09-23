@@ -41,11 +41,13 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 .links .on::after{content:"";position:absolute;left:50%;bottom:-8px;width:4px;height:4px;border-radius:50%;background:var(--ink);transform:translateX(-50%)}
 .idx-wrap{position:relative}
 .idx-btn{display:inline-flex;align-items:center;gap:6px;color:var(--ink)!important}
-.idx-btn svg{width:11px;height:11px;transition:transform .25s}
-.idx-btn[aria-expanded="true"] svg{transform:rotate(180deg)}
+.idx-btn svg:not(.loop){width:11px;height:11px;transition:transform .25s}
+.idx-btn[aria-expanded="true"] svg:not(.loop){transform:rotate(180deg)}
 .idx-menu{position:absolute;top:calc(100% + 14px);left:50%;transform:translateX(-50%);min-width:260px;background:var(--paper);border:1px solid var(--rule);padding:8px 0;list-style:none;margin:0;box-shadow:0 18px 40px -20px rgba(0,0,0,.35)}
 .idx-menu button{display:flex;justify-content:space-between;gap:18px;width:100%;padding:9px 16px;text-align:left;font-size:14px;color:var(--ink)}
 .idx-menu button:hover{background:var(--paper-2)}
+.idx-menu .idx-text{display:inline-block;position:relative;min-width:0;line-height:1.5}
+.idx-menu button:hover .idx-text .loop path,.idx-menu button:focus-visible .idx-text .loop path{stroke-dashoffset:0;transition:stroke-dashoffset .75s cubic-bezier(.6,.05,.3,1)}
 .idx-menu small{color:var(--muted);font-size:12px}
 .lang{justify-self:end;display:flex;gap:2px;font-size:12px;font-weight:600;letter-spacing:.14em}
 .lang button{padding:4px 8px;color:var(--muted)}
@@ -102,7 +104,7 @@ body[data-lang="zh"] .tab{font-family:var(--zh-serif);font-size:15px;padding:9px
 .tab:hover,.tab[aria-selected="true"]{color:var(--ink)}
 .loop{position:absolute;left:-8px;top:-7px;overflow:visible;pointer-events:none}
 .loop path{fill:none;stroke:var(--ink);stroke-width:1.5;stroke-linecap:round;stroke-dasharray:101 101;stroke-dashoffset:101;transition:stroke-dashoffset .3s ease-in}
-.has-loop:hover .loop path,.has-loop:focus-visible .loop path,.tab:hover .loop path,.tab:focus-visible .loop path,.tab[aria-selected="true"] .loop path{stroke-dashoffset:0;transition:stroke-dashoffset .75s cubic-bezier(.6,.05,.3,1)}
+.has-loop:hover .loop path,.has-loop:not(.ftab):focus-visible .loop path,.tab:hover .loop path,.tab:focus-visible .loop path,.tab[aria-selected="true"] .loop path{stroke-dashoffset:0;transition:stroke-dashoffset .75s cubic-bezier(.6,.05,.3,1)}
 .tab-desc{margin:14px 2px 16px;min-height:1.6em;font-size:15px;color:var(--ink-2)}
 .prog-line{height:1px;background:var(--hair);margin-top:14px;overflow:hidden}
 .prog-line i{display:block;height:100%;width:0;background:var(--ink)}
@@ -523,7 +525,6 @@ body[data-lang="zh"] .toc button span:last-child{font-family:"Noto Serif SC",ser
 body[data-lang="zh"] .ftab{font-family:"Noto Serif SC",serif;letter-spacing:.3em;font-size:12.5px}
 .ftab:hover{transform:translateX(4px)}
 .ftab.on{background:#fff;transform:translateX(6px)}
-.ftab.on .loop path{stroke-dashoffset:0}
 .ftab.press{transform:translateX(-6px) scale(.97)!important;box-shadow:1px 1px 0 rgba(0,0,0,.04),2px 2px 5px -4px rgba(0,0,0,.4)}
 .ftab .loop path{stroke-width:1.8}
 
@@ -766,12 +767,12 @@ body[data-lang="en"] .intro p{line-height:1.7}
 <header class="nav">
   <a class="brand" href="#top">Alyssa Wang</a>
   <nav class="links" aria-label="Sections">
-    <a href="#films" data-go="0" class="on"><span class="zh">影像</span><span class="en">Films</span></a>
-    <a href="#interactive" data-go="1" class="hide-s"><span class="zh">交互</span><span class="en">Interactive</span></a>
-    <a href="#writing" data-go="2" class="hide-s"><span class="zh">写作</span><span class="en">Writing</span></a>
-    <a href="#about" data-go="3" class="hide-s"><span class="zh">关于</span><span class="en">About</span></a>
+    <a href="#films" data-go="0" class="on has-loop"><span class="zh">影像</span><span class="en">Films</span></a>
+    <a href="#interactive" data-go="1" class="hide-s has-loop"><span class="zh">交互</span><span class="en">Interactive</span></a>
+    <a href="#writing" data-go="2" class="hide-s has-loop"><span class="zh">写作</span><span class="en">Writing</span></a>
+    <a href="#about" data-go="3" class="hide-s has-loop"><span class="zh">关于</span><span class="en">About</span></a>
     <div class="idx-wrap">
-      <button class="idx-btn" id="idxBtn" aria-expanded="false" aria-controls="idxMenu"><span class="zh">目录</span><span class="en">Index</span>
+      <button class="idx-btn has-loop" id="idxBtn" aria-expanded="false" aria-controls="idxMenu"><span class="zh">目录</span><span class="en">Index</span>
         <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 4.5l4 4 4-4"/></svg></button>
       <ul class="idx-menu" id="idxMenu" hidden></ul>
     </div>
@@ -1168,10 +1169,10 @@ function closeDetail(){
 
 /* ---------- index menu ---------- */
 function renderIndex(){
-  $('#idxMenu').innerHTML = FILMS.map((f,i)=>`<li><button data-open="${i}"><span>${f.title.en}</span><small>${f.runtime}</small></button></li>`).join('')
-   + `<li><button data-jump="interactive"><span>${lang==='zh'?'国网备考系统':'State Grid Exam Prep'}</span><small>Web app</small></button></li>`
-   + ARTS.map((a,i)=>`<li><button data-jump="w${i}"><span>${a.title[lang].length>18?a.title[lang].slice(0,18)+'…':a.title[lang]}</span><small>${a.kind[lang]}</small></button></li>`).join('')
-   + `<li><button data-jump="about"><span>${lang==='zh'?'关于 · 简历':'About · CV'}</span><small>${lang==='zh'?'简历':'CV'}</small></button></li>`;
+  $('#idxMenu').innerHTML = FILMS.map((f,i)=>`<li><button data-open="${i}"><span class="idx-text has-loop">${f.title.en}</span><small>${f.runtime}</small></button></li>`).join('')
+   + `<li><button data-jump="interactive"><span class="idx-text has-loop">${lang==='zh'?'国网备考系统':'State Grid Exam Prep'}</span><small>Web app</small></button></li>`
+   + ARTS.map((a,i)=>`<li><button data-jump="w${i}"><span class="idx-text has-loop">${a.title[lang].length>18?a.title[lang].slice(0,18)+'…':a.title[lang]}</span><small>${a.kind[lang]}</small></button></li>`).join('')
+   + `<li><button data-jump="about"><span class="idx-text has-loop">${lang==='zh'?'关于 · 简历':'About · CV'}</span><small>${lang==='zh'?'简历':'CV'}</small></button></li>`;
 }
 
 /* ---------- floppy reader on the product photo ---------- */
@@ -1382,6 +1383,7 @@ function setLang(l){
   try{localStorage.setItem('aw-lang',l)}catch(e){}
   renderCredits(); renderIndex(); renderDemoHead(); renderPrompt(); if(typeof renderArchive==='function' && artI>=0){ renderArchive(); } if(typeof arcHint==='function') $('#arcState').innerHTML=arcHint();
   if(current>=0){ const v=$('#vid'); const t=v?v.currentTime:0; renderDetail(current); if(t) $('#vid').currentTime=t; }
+  requestAnimationFrame(drawLoops);
 }
 
 /* ---------- events ---------- */
@@ -1391,7 +1393,7 @@ $('#slots').addEventListener('click',e=>{const s=e.target.closest('.slot'); if(s
 $('#closeBtn').addEventListener('click',closeDetail);
 $('#dBody').addEventListener('click',e=>{const b=e.target.closest('[data-go]'); if(b){ const v=$('#vid'); if(v) v.pause(); current=+b.dataset.go; renderDetail(current); $('#detail').scrollTo({top:0,behavior:'smooth'}); }});
 document.addEventListener('click',e=>{const b=e.target.closest('.lang button'); if(b) setLang(b.dataset.l);});
-$('#idxBtn').addEventListener('click',()=>{const m=$('#idxMenu'); const open=m.hidden; m.hidden=!open; $('#idxBtn').setAttribute('aria-expanded',open);});
+$('#idxBtn').addEventListener('click',()=>{const m=$('#idxMenu'); const open=m.hidden; m.hidden=!open; $('#idxBtn').setAttribute('aria-expanded',open); if(open) requestAnimationFrame(drawLoops);});
 $('#idxMenu').addEventListener('click',e=>{
   const b=e.target.closest('button'); if(!b) return;
   $('#idxMenu').hidden=true; $('#idxBtn').setAttribute('aria-expanded','false');
