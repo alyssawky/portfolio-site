@@ -93,6 +93,10 @@ body[data-lang="en"] #quotes:is([data-film="immature-co-evolution"],[data-film="
 body[data-lang="en"] #quotes .q:last-child{position:relative;left:clamp(50px,5vw,90px)}
 /* Keep disc proportions within the available height on wide, short screens. */
 @media (min-width:981px) and (min-aspect-ratio:3/2){.slot{width:min(var(--w),calc((100vh - 92px)*.48))}}
+/* Keep captions legible if a disc still reaches the caption line. */
+#quotes{z-index:22}
+#quotes .q .label{width:max-content;margin-inline:auto;background:var(--paper);padding-inline:.18em}
+#quotes .q p{display:inline;background:var(--paper);box-decoration-break:clone;-webkit-box-decoration-break:clone;padding-inline:.14em}
 
 /* ---------- sections ---------- */
 section.block{border-top:1px solid var(--rule);padding-block:56px 72px}
