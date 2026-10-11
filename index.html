@@ -877,6 +877,72 @@ body[data-lang="en"] .intro p{line-height:1.7}
   .d-next .t{font-size:clamp(18px,5vw,26px);overflow-wrap:anywhere}
 }
 
+
+/* A tactile file folder and a reflowed paper sheet on smaller screens. */
+@media (max-width:980px){
+  .mw-head{border-bottom:0}
+  .mw-head-title{display:none}
+  .mw-folder{position:relative;min-height:340px;margin:24px 10px 0;padding:32px 22px 20px;text-align:center;border:1px solid #d4d0c7;border-radius:3px 11px 5px 5px;box-shadow:0 5px 0 #dad7cf,0 16px 24px -14px rgba(30,27,20,.32);display:flex;flex-direction:column;align-items:center}
+  .mw-folder::before{content:"";position:absolute;top:-13px;right:12px;width:112px;height:13px;border:1px solid #d4d0c7;border-bottom:0;border-radius:7px 7px 0 0;background:#fdfdfb}
+  .mw-brass{position:absolute;left:24px;top:48%;width:17px;height:17px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#f3dfa8,#b48b3c 55%,#6d5220);box-shadow:0 1px 2px rgba(0,0,0,.32)}
+  .mw-string{position:absolute;left:2px;top:calc(48% - 45px);width:68px;height:88px;pointer-events:none}
+  .mw-file-k,.mw-cover-foot{font:11px/1.4 "Courier Prime",monospace;letter-spacing:.12em;color:#66635d}
+  .mw-folder h2{font:400 clamp(28px,5vw,42px)/1.02 "Courier Prime",monospace;letter-spacing:.15em;margin:22px 0 0}
+  .mw-rule{display:block;width:100px;height:1px;background:var(--ink);margin:16px auto 12px}
+  .mw-cover-sub{font-size:12px;letter-spacing:.16em}
+  .mw-cover-stamp{display:inline-block;margin-top:32px;transform:rotate(-5deg);color:#af3c35;border:2px solid currentColor;padding:4px 10px;font:700 14px "Courier Prime",monospace;letter-spacing:.12em}
+  .mw-cover-foot{margin-top:auto;padding-top:20px}
+  .mw-list{position:relative;display:grid;gap:0;margin:18px 0 0;padding:0 4px}
+  .mw-card{position:relative;grid-template-columns:3.3em minmax(0,1fr) auto;gap:16px;align-items:center;padding:25px 22px;margin-top:-2px;border:1px solid #d4d0c7!important;border-radius:2px 8px 5px 3px;box-shadow:0 5px 0 #e4e1d9,0 12px 24px -16px rgba(30,27,20,.38);transition:transform .25s var(--ease),box-shadow .25s var(--ease)}
+  .mw-card:nth-child(2){margin-left:8px}
+  .mw-card:nth-child(3){margin-left:16px}
+  .mw-card:active{transform:translateY(3px);box-shadow:0 2px 0 #e4e1d9}
+  .mw-file-no{align-self:start;background:#e9e5db;min-width:3em;padding:8px 5px;text-align:center;font:700 12px/1 "Courier Prime",monospace;letter-spacing:.08em}
+  .mw-card-text{min-width:0}
+  .mw-card .mw-title{display:block;color:var(--ink)}
+  .mw-card small{font-family:"Courier Prime",var(--sans);letter-spacing:.04em}
+  .mw-back{display:inline-flex;align-items:center;margin:4px 0 20px;padding:0 8px;min-height:44px;border-bottom:1px solid var(--ink)}
+  .mw-file-shell{padding:0 12px 17px;background:#dad6cb;border:1px solid #cbc5b7;border-radius:4px;box-shadow:0 12px 28px -18px rgba(0,0,0,.4)}
+  .mw-tabs{display:flex;gap:3px;padding:0 3px}
+  .mw-tabs button{flex:1;min-width:0;min-height:54px;padding:7px 3px 6px;background:#e9e6df;border:1px solid #c6c1b7;border-bottom:0;border-radius:6px 6px 0 0;font:700 12px/1.15 "Courier Prime",monospace;letter-spacing:.04em;color:#5a5853}
+  .mw-tabs button span{display:block;margin-top:4px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-family:var(--sans);font-weight:400;font-size:11px;letter-spacing:0}
+  .mw-tabs button.on{position:relative;z-index:2;background:#fdfdfb;color:var(--ink);box-shadow:0 -4px 8px -7px rgba(0,0,0,.4)}
+  .mw-story{position:relative;max-width:none;min-width:0;margin:0;padding:26px clamp(20px,4vw,42px) 20px clamp(36px,5vw,58px);border:1px solid #dedbd3;border-radius:2px;box-shadow:0 4px 0 #f3f1ec,0 12px 17px -10px rgba(0,0,0,.25);animation:mw-sheet-in .45s var(--ease) both}
+  @keyframes mw-sheet-in{from{opacity:.3;transform:translateY(14px) rotate(.7deg)}to{opacity:1;transform:none}}
+  .mw-story::before,.mw-story::after{content:"";position:absolute;left:10px;width:13px;height:13px;border-radius:50%;background:#e9e8e3;box-shadow:inset 0 2px 3px rgba(0,0,0,.28)}
+  .mw-story::before{top:135px}.mw-story::after{top:395px}
+  .mw-sheet-head,.mw-sheet-foot{display:flex;justify-content:space-between;gap:8px;border-bottom:1px solid #d8d7d1;padding-bottom:8px;color:#686761;font:10px/1.35 "Courier Prime",monospace;letter-spacing:.06em}
+  .mw-sheet-foot{border-top:1px solid #d8d7d1;border-bottom:0;padding-top:9px;padding-bottom:0;margin-top:32px}
+  .mw-case{margin-top:24px;font:700 11px/1.4 "Courier Prime",monospace;letter-spacing:.14em}
+  .mw-story h2{margin:10px 0 18px}
+  .mw-by{display:flex;justify-content:space-between;flex-wrap:wrap;gap:5px 12px;padding:8px 0;margin-bottom:16px;font:11px/1.5 "Courier Prime",monospace}
+  .mw-stamp{display:inline-block;transform:rotate(-4deg);margin:0 0 26px;color:#bd4a3d;font:700 11px/1 "Courier Prime",monospace;letter-spacing:.13em;border:2px solid currentColor;padding:4px 7px}
+  .mw-body{font-family:var(--zh-serif);font-size:16px;line-height:1.95;overflow-wrap:break-word}
+  body[data-lang="en"] .mw-body{font-family:"Courier Prime",Georgia,serif;font-size:16px;line-height:1.75}
+  .mw-body h3{font-family:"Courier Prime",var(--zh-serif);letter-spacing:.04em;border-bottom:1px dashed #d7d3c9;padding-bottom:6px}
+  .mw-next{min-height:70px}
+  .mw-next span{font-size:clamp(22px,3vw,28px)}
+}
+@media (max-width:560px){
+  .mw-folder{min-height:310px;margin:22px 4px 0;padding:25px 14px 18px}
+  .mw-folder h2{font-size:29px;margin-top:20px}
+  .mw-cover-stamp{margin-top:28px}
+  .mw-card{grid-template-columns:2.7em minmax(0,1fr) 1em;gap:10px;padding:18px 12px}
+  .mw-card:nth-child(2){margin-left:4px}.mw-card:nth-child(3){margin-left:8px}
+  .mw-card .mw-title{font-size:19px!important}
+  .mw-card small{font-size:11px}
+  .mw-file-shell{padding:0 5px 10px}
+  .mw-tabs button{font-size:11px}
+  .mw-tabs button span{font-size:10px}
+  .mw-story{padding:22px 16px 18px 33px}
+  .mw-story h2{font-size:32px}
+  body[data-lang="zh"] .mw-story h2{font-size:26px}
+  .mw-sheet-head,.mw-sheet-foot{font-size:9px;letter-spacing:0}
+  .mw-story::before,.mw-story::after{left:8px;width:12px;height:12px}
+  .mw-body{font-size:15.5px}
+  body[data-lang="en"] .mw-body{font-size:15px}
+}
+
 </style>
 
 <header class="nav">
@@ -1077,7 +1143,7 @@ body[data-lang="en"] .intro p{line-height:1.7}
         <button class="arc-close has-loop" id="arcClose"><span class="zh">合上档案</span><span class="en">Close the file</span> ✕</button>
       </div>
     </div>
-    <div class="mobile-writing" id="mobileWriting" aria-live="polite"></div>
+    <div class="mobile-writing" id="mobileWriting"></div>
   </section>
   <section class="page" id="p-about" data-page="3" aria-label="About">
     <div class="more">
@@ -1552,16 +1618,38 @@ function renderMobileWriting(){
   const host=$('#mobileWriting');
   if(mobileArtI<0){
     host.innerHTML=`<div class="mw-head"><span class="label">${lang==='zh'?'写作档案':'Writing archive'}</span><span class="label">001 — 003</span></div>
-      <h2 class="mw-head-title">${lang==='zh'?'精选文稿':'Selected writing'}</h2>
-      <div class="mw-list">${ARTS.map((a,i)=>`<button class="mw-card" data-mobile-art="${i}"><span class="label">${a.no}</span><span><span class="mw-title">${a.title[lang]}</span><small>${a.kind[lang]} · ${a.year}</small></span><span class="mw-arrow" aria-hidden="true">↗</span></button>`).join('')}</div>`;
+      <div class="mw-folder paper">
+        <span class="mw-brass" aria-hidden="true"></span>
+        <svg class="mw-string" viewBox="0 0 80 100" aria-hidden="true"><path d="M28 54 C 5 44, 10 16, 26 13 M29 55 C 66 65, 64 90, 40 91" fill="none" stroke="#b79a64" stroke-width="2"/></svg>
+        <span class="mw-file-k">ALYSSA WANG · FILE 001—003</span>
+        <h2>WRITING<br>ARCHIVE</h2><i class="mw-rule"></i>
+        <span class="mw-cover-sub">${lang==='zh'?'写作档案 · 精选文稿':'SELECTED WRITING CASES'}</span>
+        <span class="mw-cover-stamp">CONFIDENTIAL</span>
+        <span class="mw-cover-foot">${lang==='zh'?'点选下面的索引，打开一份档案':'Choose an index below to open a file'} ↓</span>
+      </div>
+      <div class="mw-list" aria-label="${lang==='zh'?'文章索引':'Writing index'}">
+        ${ARTS.map((a,i)=>`<button class="mw-card paper" data-mobile-art="${i}"><span class="mw-file-no">${a.no}</span><span class="mw-card-text"><span class="mw-title">${a.title[lang]}</span><small>${a.kind[lang]} · ${a.year}</small></span><span class="mw-arrow" aria-hidden="true">↗</span></button>`).join('')}
+      </div>`;
   }else{
     const a=ARTS[mobileArtI], meta=a.outlet?a.outlet[lang]:a.note[lang];
     const body=a.body[lang].map(item=>typeof item==='string'?`<p>${item}</p>`:`<h3>${item.h}</h3>`).join('');
     const next=ARTS[(mobileArtI+1)%ARTS.length];
-    host.innerHTML=`<article class="mw-story"><button class="mw-back" data-mobile-back>${lang==='zh'?'← 返回写作目录':'← Back to writing'}</button>
-      <div class="label">CASE ${a.no} · ${a.kind[lang]}</div><h2>${a.title[lang]}</h2>
-      <div class="mw-by">ALYSSA WANG · ${a.year} · ${meta}</div>
-      <div class="mw-body">${body}</div><button class="mw-next" data-mobile-art="${(mobileArtI+1)%ARTS.length}"><small class="label">${lang==='zh'?'下一篇':'Next story'} ↗</small><span>${next.title[lang]}</span></button></article>`;
+    host.innerHTML=`<button class="mw-back" data-mobile-back>${lang==='zh'?'← 合上档案':'← Close the file'}</button>
+      <div class="mw-file-shell">
+        <div class="mw-tabs" role="group" aria-label="${lang==='zh'?'文章索引':'Writing index'}">
+          ${ARTS.map((item,i)=>`<button data-mobile-art="${i}" aria-pressed="${i===mobileArtI}" class="${i===mobileArtI?'on':''}">${item.no}<span>${item.kind[lang]}</span></button>`).join('')}
+        </div>
+        <article class="mw-story paper">
+          <div class="mw-sheet-head"><span>ALYSSA WANG · WRITING ARCHIVE</span><span>FILE ${a.no}</span></div>
+          <div class="mw-case">${lang==='zh'?'档案编号':'CASE NO.'} ${a.no} · ${a.kind[lang]}</div>
+          <h2>${a.title[lang]}</h2>
+          <div class="mw-by"><span>${lang==='zh'?'作者':'BY'} ALYSSA WANG</span><span>${a.year} · ${meta}</span></div>
+          <div class="mw-stamp">${a.pub?(lang==='zh'?'已出版 · 收录':'PUBLISHED'):(lang==='zh'?'已修订':'REVISED')}</div>
+          <div class="mw-body">${body}</div>
+          <button class="mw-next" data-mobile-art="${(mobileArtI+1)%ARTS.length}"><small class="label">${lang==='zh'?'下一份档案':'Next file'} ↗</small><span>${next.title[lang]}</span></button>
+          <div class="mw-sheet-foot"><span>PROPERTY OF ALYSSA WANG</span><span>${a.no} / 003</span></div>
+        </article>
+      </div>`;
   }
 }
 function openMobileArticle(i){
